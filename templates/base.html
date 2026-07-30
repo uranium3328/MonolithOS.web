@@ -1,3 +1,6 @@
+{% block text %}
+{% endblock %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,24 +12,15 @@
     <header>
         <div class="logo">
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-        </div>
-        <div class="URLs">            
             <h1>Ссылки:</h1>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('about') }}">О разработчике</a></li>
-                    <li><a href="{{ url_for('post_page') }}">Пост</a></li>
+                    <li><a href="{{ url_for('about') }}">О мне</a></li>
+                    <li><a href="{{ url_for('main_page') }}">Главная</a></li>
                 </ul>
-            </nav></div>
+            </nav>
         </div>
     </header>
-
-    <div class="content">
-        <h2>Добро пожаловать на MonolithOS!</h2>
-        <p>Это главная страница вашего сайта.</p>
-        <p>Перейдите на страницу <a href="{{ url_for('post_page') }}">поста</a>.</p>
-    </div>
-
     <footer>
         <p>© 2026 MonolithOS. Все права защищены</p>
     </footer>

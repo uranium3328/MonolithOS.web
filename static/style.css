@@ -1,20 +1,60 @@
-header{
-    background-color: #c30000;
-    
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding-top: 260px;
 }
-footer{
-    background-color: #c30000;
-    
+
+.logo {
+    background-color: #a4a4a4;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
 }
-p{
-    color:white
+
+.logo img {
+    display: block;
+    max-height: 200px;
 }
-h1{
-    color:white
+
+.content, .post-content, main {
+    background-color: #d0d0d0;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
 }
-h2{
-    color:white
+
+.URLs {
+    background-color: #747474;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
 }
-h3{
-    color:white
+
+footer {
+    background-color: #d9d9d9;
+    padding: 20px;
+    text-align: center;
+}
+
+p, h1, h2, h3, li {
+    color: rgb(0, 0, 0);
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000000;
+    text-decoration: underline;
 }
