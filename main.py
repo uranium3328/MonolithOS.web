@@ -18,5 +18,13 @@ def post2_page():
 def about():
     return render_template('about.html')
 
+@app.route('/test', methods=['GET', 'POST']) 
+def test():
+    return render_template('test.html')      
+
+@app.route('/dist')
+def dist():
+    return render_template('dist.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

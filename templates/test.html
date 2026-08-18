@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Калькулятор двоичного кода</h2>
+
+<table border="1" style="border-collapse: collapse; margin: 20px 0;">
+    <tr>
+        <th colspan="3" style="background-color: #9e9e9e; color: white; padding: 10px;">
+            Калькулятор двоичного кода
+        </th>
+    </tr>
+    <tr>
+        <td style="padding: 8px;"><strong>Число:</strong></td>
+        <td>
+            <form method="POST" style="margin: 0;">
+                <input type="number" name="input_value" min="0" placeholder="42" required 
+                       style="width: 150px; padding: 5px;">
+        </td>
+        <td>
+                <input type="submit" value="OK" style="padding: 5px 15px;">
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 8px;"><strong>Двоичный код:</strong></td>
+        <td colspan="2" style="font-family: monospace; padding: 8px;">
+            {% if result and not result.error %}
+                {{ result.binary }}
+            {% else %}
+                <em style="color: gray;">здесь будет двоичный код</em>
+            {% endif %}
+        </td>
+    </tr>
+    {% if result and not result.error %}
+    <tr>
+        <td style="padding: 8px;"><strong>Байты:</strong></td>
+        <td colspan="2" style="font-family: monospace; padding: 8px;">
+            {{ result.binary_bytes }}
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 8px;"><strong>Размер:</strong></td>
+        <td colspan="2" style="padding: 8px;">
+            {{ result.bit_count }} бит ({{ result.byte_count }} байт)
+        </td>
+    </tr>
+    {% endif %}
+</table>
+
+<h3>Примеры</h3>
+<table border="1" style="border-collapse: collapse; font-size: 14px;">
+    <tr style="background-color: #e0e0e0;">
+        <th style="padding: 5px;">Число</th>
+        <th style="padding: 5px;">Двоичный код</th>
+        <th style="padding: 5px;">Описание</th>
+    </tr>
+    <tr>
+        <td style="padding: 5px;">0</td>
+        <td style="padding: 5px; font-family: monospace;">00000000</td>
+        <td style="padding: 5px;">Пустой байт</td>
+    </tr>
+    <tr>
+        <td style="padding: 5px;">42</td>
+        <td style="padding: 5px; font-family: monospace;">00101010</td>
+        <td style="padding: 5px;">Ответ на всё</td>
+    </tr>
+    <tr>
+        <td style="padding: 5px;">255</td>
+        <td style="padding: 5px; font-family: monospace;">11111111</td>
+        <td style="padding: 5px;">Максимум байта</td>
+    </tr>
+</table>
+
+{% if result %}
+    {% if result.error %}
+        <p style="color: red; margin-top: 20px;"><strong>{{ result.error }}</strong></p>
+    {% else %}
+        <h3>Биты числа {{ result.decimal }}</h3>
+        <table border="1" style="border-collapse: collapse; text-align: center; margin: 10px 0;">
+            <tr style="background-color: #9e9e9e; color: white;">
+                <th colspan="8" style="padding: 8px;">Байт 1</th>
+            </tr>
+            <tr style="background-color: #e0e0e0;">
+                {% for i in range([8, result.bits|length]|min - 1, -1, -1) %}
+                    {% if i < result.bits|length %}
+                <th style="padding: 5px; width: 40px;">{{ i }}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr style="font-family: monospace; font-size: 18px;">
+                {% for i in range([8, result.bits|length]|min - 1, -1, -1) %}
+                    {% if i < result.bits|length %}
+                <td style="padding: 8px; width: 40px; {% if result.bits[i] == '1' %}background-color: #bdbdbd; font-weight: bold;{% else %}background-color: #e0e0e0;{% endif %}">
+                    {{ result.bits[i] }}
+                </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

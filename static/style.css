@@ -30,7 +30,15 @@ body {
     z-index: 1;
 }
 
-.URLs {
+nav {
+    background-color: #747474;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+}
+.about {
     background-color: #747474;
     padding: 20px;
     margin: 20px;
